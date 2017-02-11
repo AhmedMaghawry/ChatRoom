@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "6693734918",
+    "firebase_url": "https://chat-75842.firebaseio.com",
+    "project_id": "chat-75842",
+    "storage_bucket": "chat-75842.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6693734918:android:c2f6835bf9e87d91",
+        "android_client_info": {
+          "package_name": "com.ahmedmaghawry.chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "6693734918-fo1d2m4hevkumni6a6m89nlrt01jddqf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6DVkYoXTVhsRXK30N-GnF-Q2pdT8DzdM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "6693734918-fo1d2m4hevkumni6a6m89nlrt01jddqf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
