@@ -60,7 +60,7 @@ public class Registeration extends Activity {
     }
 
     private void checkEmail() {
-        final Firebase firebase = new Firebase("@string/fireBaseName");
+        final Firebase firebase = new Firebase("https://chat-75842.firebaseio.com/");
         firebase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

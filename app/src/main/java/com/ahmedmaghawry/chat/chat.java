@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -13,6 +14,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -32,24 +34,29 @@ public class chat extends Activity {
     ListView list;
     Firebase chatCurrent;
     Firebase chatSend;
+    ArrayList<String> chatContentList;
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat_page);
         Intent data = getIntent();
+        chatContentList = new ArrayList<>();
         currentUser = data.getStringExtra("Sender");
         sendToUser = data.getStringExtra("Receiver");
         chatArea = (EditText) findViewById(R.id.text);
         sendButton = (Button) findViewById(R.id.send);
         list = (ListView) findViewById(R.id.listView2);
-        mainFire = new Firebase("@string/fireBaseName");
+        mainFire = new Firebase("https://chat-75842.firebaseio.com/");
         currentFire = mainFire.child(currentUser);
         sendToFire = mainFire.child(sendToUser);
         chatCurrent = currentFire.child("Friends").child(sendToUser).child("Chat");
         chatSend = sendToFire.child("Friends").child(currentUser).child("Chat");
-        initializeCounter();
+        initializeCounterAndChatContent();
         initializeName();
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, chatContentList);
+        list.setAdapter(adapter);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,13 +76,18 @@ public class chat extends Activity {
         //add at the send to user console
         Firebase newMessageRecevier = chatSend.child("Text"+counter);
         newMessageRecevier.setValue(userName + " : " + chatContent);
+        chatContentList.add(userName + " : " + chatContent);
+        //adapter.notifyDataSetChanged();
     }
 
-    private void initializeCounter() {
+    private void initializeCounterAndChatContent() {
         chatCurrent.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 counter = (int) dataSnapshot.getChildrenCount();
+                for (DataSnapshot x : dataSnapshot.getChildren()) {
+                    chatContentList.add(x.getValue(String.class));
+                }
             }
 
             @Override
@@ -98,5 +110,11 @@ public class chat extends Activity {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

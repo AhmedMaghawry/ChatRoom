@@ -67,7 +67,7 @@ public class Login extends Activity{
     }
 
     private void checkExistance() {
-        Firebase firebase = new Firebase("@string/fireBaseName");
+        Firebase firebase = new Firebase("https://chat-75842.firebaseio.com/");
         firebase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -76,6 +76,7 @@ public class Login extends Activity{
                     if(checkPassword(allUsersMap)) {
                         Intent enterHome = new Intent(Login.this, home.class);
                         enterHome.putExtra("Email",email);
+                        enterHome.putExtra("Name",(String)allUsersMap.get(email).get("Name"));
                         startActivity(enterHome);
                         finish();
                     } else {

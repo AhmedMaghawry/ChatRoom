@@ -30,6 +30,7 @@
             android:id="@+id/send"
             android:text="Send"
             android:layout_height="@dimen/chat_height" />
+
     </LinearLayout>
 
     <ListView
@@ -38,6 +39,7 @@
         android:id="@+id/listView2"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/linearLayout" />
+        android:layout_above="@+id/linearLayout"
+        android:clickable="false" />
 
 </RelativeLayout>

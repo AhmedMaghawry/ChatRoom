@@ -13,11 +13,7 @@ android {
         multiDexEnabled true
     }
     buildTypes {
-        debug {
-            resValue "string", "fireBaseName", "https://chat-75842.firebaseio.com/"
-        }
         release {
-            resValue "string", "fireBaseName", "https://chat-75842.firebaseio.com/"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
